@@ -1,0 +1,19 @@
+import random
+
+Choice = "yes"
+
+print("Welcome To 'Dice Simulator'")
+print()
+
+while (Choice == "yes"):
+    
+    print(f"Random Number: {random.randint(0,6)}")
+    print()
+    Choice = input("Do You Want To Reroll The Dice? (Yes/No): ").strip().lower()
+    print()
+    
+print("Thank You For Using This Program! We Hope To See You Again!")
+
+
+    
+    
