@@ -1,0 +1,37 @@
+import random
+
+Choice = 'yes'
+Counter = 0
+Guess = 0
+
+print("Welcome To Number Guessing Game!\n\nGuess The Number Between 0 And 100!\n")
+
+while (Choice == "yes"):
+    Val = random.randint(0,100)
+    while (Val != Guess):
+    
+        Guess = int(input("Enter A Guess: "))
+        if (Guess > 100):
+            print("Your Guess Must Be Within 0-100.")
+        
+        elif (Guess < 0):
+            print("Your Guess Should Be Higher Or Equal To 0.")
+        else:
+            if (Guess > Val):
+                print("Too High!")
+                Counter += 1
+                print()
+            elif (Guess < Val):
+                print("Too Low!")
+                Counter += 1
+                print()
+            else:
+                print("Congratulations, You Have Guessed It Right!")
+                print()
+        
+    Choice = input("Do You Want To Play Again? (Yes/No): ").strip().lower()
+    print()
+    
+print("Final Result:")
+print()
+print(f"Total Guesses: {Counter}")
