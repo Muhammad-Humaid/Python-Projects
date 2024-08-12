@@ -1,59 +1,84 @@
+# Calculator Functions
+
 def Add():
-    Num1 = float(input("Enter The First Number: "))
-    Num2 = float(input("Enter The Second Number: "))
-    Sum = Num1 + Num2
-    return Sum
+    try:
+        Num1 = float(input("Enter The First Number: "))
+        Num2 = float(input("Enter The Second Number: "))
+        Sum = Num1 + Num2
+        return Sum
+    except ValueError:
+        print("Invalid Input! Please Enter A Number.")
+        return None
 
 def Subtract():
-    Num1 = float(input("Enter The First Number: "))
-    Num2 = float(input("Enter The Second Number: "))
-    Difference = Num1 - Num2
-    return Difference
+    try:
+        Num1 = float(input("Enter The First Number: "))
+        Num2 = float(input("Enter The Second Number: "))
+        Difference = Num1 - Num2
+        return Difference
+    except ValueError:
+        print("Invalid Input! Please Enter A Number.")
+        return None
 
 def Multiply():
-    Num1 = float(input("Enter The First Number: "))
-    Num2 = float(input("Enter The Second Number: "))
-    Product = Num1 * Num2
-    return Product
+    try:
+        Num1 = float(input("Enter The First Number: "))
+        Num2 = float(input("Enter The Second Number: "))
+        Product = Num1 * Num2
+        return Product
+    except ValueError:
+        print("Invalid Input! Please Enter A Number.")
+        return None
 
 def Divide():
-    Num1 = float(input("Enter The First Number: "))
-    Num2 = float(input("Enter The Second Number: "))
-    
-    if (Num2 == 0):
-        print("Cannot divide by zero.")
-    
-    else:
+    try:
+        Num1 = float(input("Enter The First Number: "))
+        Num2 = float(input("Enter The Second Number: "))
+        
+        if Num2 == 0:
+            print("Cannot divide by zero.")
+            return None
+        
         Divide = Num1 / Num2
         return Divide
-
+    except ValueError:
+        print("Invalid Input! Please Enter A Number.")
+        return None
 
 Choice = 0
 
-while (Choice != 5):
-    print("Select Your Operations Below: ")
+while Choice != 5:
+    print("Select Your Operation Below:")
     print()
     print("1. Add\n2. Subtract\n3. Multiply\n4. Divide\n5. Exit")
     print()
-    Choice = int(input("Enter Your Choice: "))
+    
+    try:
+        Choice = int(input("Enter Your Choice: "))
+    except ValueError:
+        print("Invalid Choice! Enter A Numeric Choice.")
+        continue
 
-    if (Choice == 1):
-        Sum = Add();
-        print(f"{Sum}\n")
-    elif (Choice == 2):
-        Sub = Subtract();
-        print(f"{Sub}\n")
-    elif (Choice == 3):
-        Prod = Multiply();
-        print(f"{Prod}\n")
-    elif (Choice == 4):
-        Div = Divide();
-        print(f"{Div}\n")    
-    elif (Choice == 5):
+    if Choice == 1:
+        Result = Add()
+        if Result is not None:
+            print(f"Sum: {Result}\n")
+    elif Choice == 2:
+        Result = Subtract()
+        if Result is not None:
+            print(f"Difference: {Result}\n")
+    elif Choice == 3:
+        Result = Multiply()
+        if Result is not None:
+            print(f"Product: {Result}\n")
+    elif Choice == 4:
+        Result = Divide()
+        if Result is not None:
+            print(f"Quotient: {Result}\n")
+    elif Choice == 5:
         break
     else:
         print("Invalid Choice! Please Try Again.")
         print()
 
 print("You Have Decided To Exit, See You Again!")
-        
