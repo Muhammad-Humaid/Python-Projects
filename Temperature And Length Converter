@@ -1,0 +1,167 @@
+# Temperature Conversions (Functions)
+
+def Fah_Cels():
+    try:
+        Fahrenheit = float(input("Enter Temperature In Fahrenheit: "))
+        Celsius = 5/9 * (Fahrenheit - 32)
+        return Celsius
+    except ValueError:
+        print("Invalid Input! Please Enter A Numeric Value.")
+        return None
+
+def Cels_Fah():
+    try:
+        Celsius = float(input("Enter Temperature In Celsius: "))
+        Fahrenheit = 9/5 * (Celsius + 32)
+        return Fahrenheit
+    except ValueError:
+        print("Invalid Input! Please Enter A Numeric Value.")
+        return None
+
+def Cels_Kel():
+    try:
+        Celsius = float(input("Enter Temperature In Celsius: "))
+        Kelvin = Celsius + 273.15
+        return Kelvin
+    except ValueError:
+        print("Invalid Input! Please Enter A Numeric Value.")
+        return None
+        
+def Fah_Kel():
+    try:
+        Fahrenheit = float(input("Enter Temperature In Fahrenheit: "))
+        Kelvin = 5/9 * (Fahrenheit - 32) + 273.15
+        return Kelvin
+    except ValueError:
+        print("Invalid Input! Please Enter A Numeric Value.")
+        return None
+
+
+# Length Conversions (Functions)
+
+def Km_M():
+    try:
+        Kilometers = float(input("Enter Length/Distance In Kilometers: "))
+        Meters = Kilometers * 1000
+        return Meters
+    except ValueError:
+        print("Invalid Input! Please Enter A Numeric Value.")
+        return None
+
+def M_Cm():
+    try:
+        Meters = float(input("Enter Length/Distance In Meters: "))
+        Centimeters = Meters * 100
+        return Centimeters
+    except ValueError:
+        print("Invalid Input! Please Enter A Numeric Value.")
+        return None
+
+def Cm_Mm():
+    try:
+        Centimeters = float(input("Enter Length/Distance In Centimeters: "))
+        Millimeters = Centimeters * 10
+        return Millimeters
+    except ValueError:
+        print("Invalid Input! Please Enter A Numeric Value.")
+        return None
+
+def Ft_M():
+    try:
+        
+        Feet = float(input("Enter Length/Distance In Feet: "))
+        Meters = Feet * 0.3048
+        return Meters
+    except ValueError:
+        print("Invalid Input! Please Enter A Numeric Value.")
+        return None
+   
+        
+# Main Function
+
+Choice = 0
+print("Welcome To Conversions Program.")
+
+while (Choice != 3):
+    
+    print()
+    print("Select An Appropiate Conversions From Below")
+    print()
+    print("1. Temperature Conversion\n2. Length Conversion\n3. Exit Program")
+    try:
+        Choice = int(input("Enter Your Choice (1/2/3): "))
+    except ValueError:
+        print("Invalid Input! Please Enter A Numeric Value.")
+        continue
+    
+    if (Choice == 1):
+        print()
+        print("1. Fahrenheit (F) to Celsius (C)\n2. Celsius (C) to Fahrenheit (F)\n3. Celsius (C) to Kelvin (K)\n4.Fahrenheit (F) to Kelvin (K)")
+        print()
+        
+        try:
+            Temp_Choice = int(input("Enter Your Choice (1/2/3/4): "))
+        except ValueError:
+            print("Invalid Input! Please Enter A Numeric Value.")
+            continue
+        
+        if (Temp_Choice == 1):
+            Celsius = Fah_Cels()
+            print(f"The Temperature Is {Celsius} Degrees Celsius.")
+            print()
+            
+        if (Temp_Choice == 2):
+            Fahrenheit = Cels_Fah()
+            print(f"The Temperature Is {Fahrenheit} Degrees Fahrenheit.")
+            print()
+        
+        if (Temp_Choice == 3):
+            Kelvin = Cels_Kel()
+            print(f"The Temperature Is {Kelvin} Kelvin.")
+            print()
+            
+        if (Temp_Choice == 4):
+            Kelvin = Fah_Kel()
+            print(f"The Temperature Is {Kelvin} Kelvin.")
+            print()
+        
+    elif (Choice == 2):
+        print()
+        print("1. Kilometer To Meter\n2. Meter To Centimeter\n3. Centimeter To Millimeter\n4. Feet To Meters")
+        print()
+        
+        try:
+            Length_Choice = int(input("Enter Your Choice (1/2/3/4): "))
+        except ValueError:
+            print("Invalid Input! Please Enter A Numeric Value.")
+            continue
+        
+        if (Length_Choice == 1):
+            Meters = Km_M()
+            print(f"The Length/Distance Is {Meters} Meters.")
+            print()
+            
+        if (Length_Choice == 2):
+            Centimeters = M_Cm()
+            print(f"The Length/Distance Is {Centimeters} Centimeters.")
+            print()
+        
+        if (Length_Choice == 3):
+            Millimeters = Cm_Mm()
+            print(f"The Length/Distance Is {Millimeters} Millimeters.")
+            print()
+            
+        if (Length_Choice == 4):
+            Meters = Ft_M()
+            print(f"The Length/Distance Is {Meters} Meters.")
+            print()
+
+    elif (Choice != 1) and (Choice != 2) and (Choice != 3):
+        print("Invalid Choice, Enter Your Choice Again.")
+        
+    else:
+        print()
+        print("Exiting Program...")
+
+print("Program Exited Successfully.")
+    
