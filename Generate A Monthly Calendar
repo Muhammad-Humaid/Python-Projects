@@ -1,0 +1,39 @@
+import calendar
+
+print()
+print("Generate A Monthly Calendar!")
+print()
+
+Choice = 'yes'
+
+while (Choice == 'yes'):
+    try:
+        Year = int(input("Enter The Year (e.g., 2005): "))
+        Month = int(input("Enter The Month Number (1-12): "))
+        print()
+        
+        if (1 <= Month <= 12) and (Year > 0):
+            print(calendar.month(Year, Month))
+            
+            print()
+            Choice = input("Do You Want To Continue? (Yes/No):").strip().lower()
+            print()
+            
+        else:
+            print("Invalid Month Or Year, Please Try Again")
+            print()
+            continue
+        
+    except ValueError:
+        print("Please Enter A Numeric Value.")
+        print()
+        continue
+
+print("Program Successfully Exited.")
+            
+            
+    
+    
+
+
+    
