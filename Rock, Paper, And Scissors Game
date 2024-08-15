@@ -1,0 +1,62 @@
+import random
+
+print()
+Name = input("Please Enter Your Name: ").strip()
+print()
+print("Welcome To Rock, Papers, And Scissors Game! Here Are The Instructions:")
+print()
+print("1. Enter 'R' For Rock\n2. Enter 'P' For Papers\n3. Enter 'S' For Scissors")
+print()
+
+Choice = 'yes'
+Tie = 0
+CPU_Won = 0
+Player_Lost = 0
+CPU_Loss = 0
+Player_Won = 0
+
+while (Choice == 'yes'):
+    CPU_Choice = random.choice(['r','s','p'])
+    Selection = input("Enter Your Choice (R/P/S): ").strip().lower()
+    if (Selection == CPU_Choice):
+        Tie += 1
+        print(f"A Draw! You '{Selection.upper()}' And The CPU '{CPU_Choice.upper()}' Rolled The Same Thing ")
+        print()
+    
+    elif (CPU_Choice == 'r') and (Selection == 's') or (CPU_Choice == 's') and (Selection == 'p') or (CPU_Choice == 'p') and (Selection == 'r'):
+        print(f"You Lost, CPU Rolled '{CPU_Choice.upper()}' Whereas You Rolled {Selection.upper()}")
+        CPU_Won += 1
+        Player_Lost += 1
+        print()
+
+    
+    elif (Selection == 'r') and (CPU_Choice == 's') or (Selection == 's') and (CPU_Choice == 'p') or (Selection == 'p') and (CPU_Choice == 'r'):
+        print(f"You Won, You Rolled {Selection.upper()} Whereas CPU Rolled {CPU_Choice.upper()}")
+        CPU_Loss += 1
+        Player_Won += 1
+        print()
+    
+    else:
+        print("Invalid Choice, Please Try Again.")
+        print()
+        continue
+        
+    Choice = input("Do You Want To Play Again? (Yes/No): ").strip().lower()
+    print()
+
+
+print()
+print("Final Stats:")
+print()
+if (Player_Won > CPU_Won):
+    print("YOU WON THE GAME!")
+    print()
+else:
+    print("YOU LOST THE GAME!")
+    print()
+
+print(f"CPU Wins: {CPU_Won} {'\n'}{Name} Wins: {Player_Won}{'\n'}Ties: {Tie}")
+print()
+print("Program Exitted Successfully. Hope To See You Again!")
+    
+
