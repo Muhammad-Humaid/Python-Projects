@@ -1,0 +1,568 @@
+import random
+
+def Pin(Pin_Code):
+    
+    try:
+        
+        Pin = input("Enter Your 4-Digit Pin: ")
+        Pin_Length = len(Pin)
+        Int_Pin = int(Pin)
+        
+        if (Pin_Length == 4) and (Int_Pin == Pin_Code):
+            print()
+            return True
+        
+        elif (Pin_Length == 4) and (Int_Pin != Pin_Code):
+            print("Account Pin And Entered Pin Doesn't Match.")
+            input("Press Enter To Continue...")
+            print()
+            return False
+        
+        else:
+            print("Enter A 4-Digit Pin Instead.")
+            print()
+            return False    
+
+    except ValueError:
+        print("Enter Numeric Values Instead.")
+        print()
+         
+# Variables For Authentication, And Tries:
+
+User_Name = "N/A"
+Password = "N/A"
+Confirm_Password = "N/A"
+Login_Password = "N/A"
+Login_Username = "N/A"
+Choice = 0 
+Tries = 0
+Pin_Code = 9715
+Confirm_Pin = 9715
+Pin_Tries = 0
+Reset_Password_Tries = 0
+PR_Pin_Tries = 0
+
+# Banking System:
+
+Cash = random.randint(1000,1000000)
+Account = random.choice(['SAVINGS ACCOUNT','CURRENT ACCOUNT','SALARY ACCOUNT'])
+
+print()
+
+# Creating / Login / Exit System:
+
+while (Choice != 4):
+    
+    try:
+        
+        Choice = 1
+        PR_Pin_Tries = Reset_Password_Tries = Tries = 0
+        Sign_Off = False
+        
+        print("*****************************************".center(60))
+        print("BANKING PORTAL".center(60))
+        print("*****************************************".center(60))
+        
+        print()
+        
+        print("1. Create A Bank Account\n2. Login Into An Existing Account\n3. Forgot Password?\n4. Exit\n\n".center(60))
+        Choice = int(input("Enter Your Choice (1/2/3/4): "))
+        
+        print()
+        
+        # Create A New Account:
+        
+        if (Choice == 1):
+            
+            while True:
+                
+                User_Name = input("Enter Your Username: ").strip()
+                Password = input("Enter Your Password: ").strip()
+                Confirm_Password = input("Retype Your Password: ").strip()
+                
+                                
+                if (Password == Confirm_Password):
+                        
+                    print("Account Successfully Created!")
+                    input("Press Enter To Continue...") 
+                    print()
+                    break
+                                    
+                else:
+                        
+                    print("Your Password Did Not Match, Please Try Again.")
+                    input("Press Enter To Continue...")
+                    print()
+                    
+                    
+
+        # Logging Into Your Account:
+        
+        elif (Choice == 2):
+            
+            while True:
+                
+                if (Sign_Off == True):
+                    break
+                
+                if (Tries == 3):
+                    
+                    print("You Have Exceeded The Number Of Tries (3), Please Sign Up For A New Account Or Reset Your Password.")
+                    print()
+                    input("Press Enter To Continue..")
+                    
+                    print()
+                    break
+        
+                print("*****************************************".center(60))
+                print("AUTHENTICATION SYSTEM (LOGIN)".center(60))
+                print("*****************************************".center(60))
+                print()
+                
+                Login_Username = input("Enter Your Username: ").strip()
+                Login_Password = input("Enter Your Password: ").strip()
+                print()
+                 
+                # Authenticating The Username And Password:
+                    
+                if (User_Name == Login_Username) and (Password == Login_Password):
+                    
+                    print("Successfully Authenticated, Enrouting You To The Home Screen.")
+                    print()
+                    
+                    # Loop To Continue Displaying The Same Menu Until The User Decides To Exit
+                    
+                    while True:
+                        
+                        try:
+                            
+                            Pin_Tries = 0
+                            Change_Pin = 0
+                            
+                            print("*****************************************".center(60))
+                            print("HOME PAGE - BANKING PORTAL".center(60))
+                            print("*****************************************".center(60))
+                            print()
+ 
+                            print(f"Welcome {User_Name}! {'\n\n'}Type: {Account}".center(80))
+                            
+                            if (Pin_Code == 9715):
+                                
+                                print()
+                                print("SECURITY ALERT - PLEASE CREATE A NEW PIN CODE FOR THIS ACCOUNT.")
+                                
+                            print()
+                            print("1. Current Account Balance\n2. Deposit Cash\n3. Withdraw Cash\n4. Create/Change Pin Code\n5. View Your Profile\n6. Sign Out")
+                            print()
+                            
+                            Bank_Choice = int(input("Enter Your Choice (1/2/3/4/5): "))
+                            print()
+                            
+                            if (Bank_Choice == 1):
+                                
+                                while True:
+                                    
+                                    if (Pin_Code == 9715):
+                                        
+                                        print()
+                                        print("Please Set-Up A 4-Digit Pin. ")
+                                        input("Press Enter To Continue...")
+                                        print()
+                                        
+                                        break
+                                    
+                                    else:
+                                        
+                                        T_F = Pin(Pin_Code)
+                                    
+                                        if (T_F == True):   
+                                             
+                                            print(f"Amount: {Cash} PKR")
+                                            input("Press Enter To Continue.. ")
+                                            print()
+                                            break
+                                        
+                                        else:
+                                            
+                                            Pin_Tries += 1
+                                            
+                                            if (Pin_Tries < 3):
+                                                
+                                                print()
+                                                continue
+                                            
+                                            else:
+                                                
+                                                print("You Have Exceeded The Amount Of Tries (3), Please Retry Again Later.")
+                                                input("Press Enter To Continue...")
+                                                print()
+                                                break  
+                                
+                            elif (Bank_Choice == 2):
+                                
+                                while True:
+                                    
+                                    if (Pin_Code == 9715):
+                                        
+                                        print()
+                                        print("Please Set-Up A 4-Digit Pin. ")
+                                        input("Press Enter To Continue...")
+                                        print()
+                                        break 
+                                    
+                                    T_F = Pin(Pin_Code)
+                                    
+                                    if (T_F == True):  
+                                         
+                                        try:
+                                            print("Current Deposit Limit: 50,000 PKR")
+                                            print()
+                                            Deposit = int(input("Enter Your Deposit Amount: "))
+                                            
+                                            if (Deposit <= 50000):
+                                                
+                                                print("Successfully Deposited.")
+                                                Cash += Deposit
+                                                input("Press Enter To Continue.. ")
+                                                print()
+                                                break
+                                            
+                                            else:
+                                                
+                                                print("You Have Exceeded The Deposit Value, Please Retry Again.")
+                                                print()
+                                            
+                                        except ValueError:
+                                            
+                                            print("Enter A Numeric Value.")
+                                            
+                                    else:
+                                        
+                                        Pin_Tries += 1
+                                            
+                                        if (Pin_Tries < 3):
+                                            
+                                            print()
+                                            continue
+                                            
+                                        else:
+                                            
+                                            print("You Have Exceeded The Amount Of Tries (3), Please Retry Again Later.")
+                                            input("Press Enter To Continue...")
+                                            print()
+                                            break  
+                                                 
+                            elif (Bank_Choice == 3):
+                                
+                                while True:
+                                    
+                                    if (Pin_Code == 9715):
+                                        
+                                        print()
+                                        print("Please Set-Up A 4-Digit Pin. ")
+                                        input("Press Enter To Continue...")
+                                        print()
+                                        
+                                        break 
+                                    
+                                    T_F = Pin(Pin_Code)
+                                    
+                                    if (T_F == True):
+                                        
+                                        try:
+                                            
+                                            print("Withdrawal Limit: 100,000 PKR")
+                                            print(f"Current Amount: {Cash}")
+                                            print()
+                                            Withdraw = int(input("Enter Amount To Withdraw: "))
+                                            
+                                            if (Withdraw <= 100000) and (Withdraw <= Cash):
+                                                
+                                                Cash = Cash - Withdraw
+                                                print()
+                                                print("Cash Successfully Withdrawn")
+                                                input("Press Enter To Continue...")
+                                                print()
+                                                
+                                                break
+                                            
+                                            elif (Withdraw > 100000):
+                                                
+                                                print("You Have Exceeded The Withdrawal Limit")
+                                                print()
+                                                input("Press Enter To Continue...")
+                                                print()
+                                            
+                                            else:
+                                                
+                                                print(f"You Don't Have Enough Cash Available (Current Balance: {Cash}) ")
+                                                print()
+                                                input("Press Enter To Continue...")
+                                                print()
+                                                
+                                                break
+                                                
+                                        except ValueError:
+                                            
+                                            print("Enter A Numeric Value.")
+                                            print()
+                                    
+                                    else:
+                                        
+                                        Pin_Tries += 1
+                                            
+                                        if (Pin_Tries < 3):
+                                            
+                                            print()
+                                            continue
+                                            
+                                        else:
+                                            
+                                            print("You Have Exceeded The Amount Of Tries (3), Please Retry Again Later.")
+                                            input("Press Enter To Continue...")
+                                            print()
+                                            break  
+                                    
+                            
+                            elif (Bank_Choice == 4):
+                                
+                                if (Pin_Code == 9715):
+                                    
+                                    while True:
+                                            
+                                        try:
+                                            
+                                            New_Pin = input("Enter Your New '4 Digit Pin' Code: ").strip()
+                                            Pin_Length = len(New_Pin)
+                                            Int_Pin_Length = int(New_Pin)
+                                            
+                                            if (Pin_Length == 4):
+                                                
+                                                try:
+                                                    
+                                                    Confirm_Pin = input("Retype Your Pin: ").strip()
+                                                    NPin_Length = len(Confirm_Pin)
+                                                    Int_NPin_Length = int(Confirm_Pin)
+                                                    
+                                                    if (NPin_Length == 4):
+                                        
+                                                        if (Int_Pin_Length == Int_NPin_Length):
+                                                            
+                                                            Pin_Code = Int_Pin_Length
+                                                            print()
+                                                            print("Pin Created Successfully.")
+                                                            input("Press Enter To Continue... ")
+                                                            print()
+                                                            
+                                                            break
+                                                            
+                                                        else:
+                                                            
+                                                            print("Invalid Code, The New Pin And The Confirm Pin Doesn't Match.")
+                                                            input("Try Again, Press Enter To Continue...")
+                                                            print()
+                                                    
+                                                    else:
+                                                        
+                                                        print("Enter A 4-Digit Pin Instead.")
+                                                        input("Press Enter To Continue...")
+                                                        print()
+                                                        
+                                                except ValueError:
+                                            
+                                                    print("Please Enter Numeric Values.") 
+                                            else:
+                                                
+                                                print("Please Enter A 4-Digit Pin Instead.")
+                                                input("Press Enter To Continue...")
+                                                print()       
+                                                    
+                                        except ValueError:
+                                            
+                                            print("Please Enter Numeric Values.")
+                                
+                                else:
+                                    
+                                    while True:  
+                                        try:
+                                            
+                                            N_Pin_Code = input("Enter Your Current 4-Digit Pin: ")
+                                            N_Pin_Code_Length = len(N_Pin_Code)
+                                            Int_N_Pin_Code = int(N_Pin_Code)
+                                            
+                                            if (N_Pin_Code_Length == 4):
+                                                
+                                                if (Int_N_Pin_Code == Pin_Code):
+                                                    
+                                                    try:
+                                                        
+                                                        New_Pin_Code = input("Enter Your New 4-Digit Pin: ")
+                                                        New_Pin_Code_Length = len(New_Pin_Code)
+                                                        New_Pin_Code_Int = int(New_Pin_Code)
+                                                        print()
+                                                        
+                                                        if (New_Pin_Code_Length == 4):
+                                                            
+                                                            if (New_Pin_Code_Int != Pin_Code):
+                                                                
+                                                                print("Pin Successfully Changed.")
+                                                                input("Press Enter To Continue...")
+                                                                print()
+                                                                Pin_Code = New_Pin_Code_Int
+                                                                break
+                                                            
+                                                            else:
+                                                                
+                                                                print("Your New Pin Code Cannot Be Same As Your Old Pin Code.")
+                                                                input("Press Enter To Continue...")
+                                                                print()
+                                                        
+                                                        else:
+                                                            
+                                                            print("Your New Pin Code Is Not A 4-Digit Pin, Please Provide A 4-Digit Value.")
+                                                            input("Press Enter To Continue...")
+                                                            print()
+                                                            
+                                                    except ValueError:
+                                                        
+                                                        print("Please Enter Numeric Values.")
+                                                        input("Press Enter To Continue...")
+                                                        print()
+                                                    
+                                                else:
+                                                        
+                                                    print("Invalid Current Pin.")
+                                                    input("Press Enter To Continue...")
+                                                    print()   
+                                                
+                                            else:
+
+                                                print("It's Not A 4-Digit Number, Please Enter A 4-Digit Pin.")      
+                                                input("Press Enter To Continue...")
+                                                print()        
+                                                        
+                                        except ValueError:
+                                        
+                                            print("Please Enter Numeric Values.")
+                                            input("Press Enter To Continue...") 
+                                            print()
+                                            
+                                            continue
+                                                      
+                            elif (Bank_Choice == 5):
+                                
+                                print(f"Name: {User_Name}")
+                                print("Password: ", end = "")
+                                
+                                for i in Password:
+                                    print("*",end="")
+                                    
+                                print()
+                                print(f"Account Type: {Account}")
+                                print()
+                                input("Press 'Enter' To Go Back To The Main Menu.")
+                                print()
+                                
+                                                            
+                            elif (Bank_Choice == 6):
+                                
+                                print("Signing You Off...")
+                                print()
+                                Sign_Off = True
+                                
+                                break
+         
+                            
+                            else:
+                                
+                                print("Enter A Valid Choice.")
+                                input("Press Enter To Continue...")
+                                print()            
+                                
+                        except ValueError:
+                            
+                            print("Enter A Numeric Value")
+                            input("Press Enter To Continue..")
+                            print()
+                            
+                else:
+                            
+                    print("Invalid Username Or Password, Try Again.")
+                    Tries += 1
+                    input("Press Enter To Continue..")
+                    print()
+                            
+
+        elif (Choice == 3):
+            
+            while True:
+                
+                if (Reset_Password_Tries <= 3) or (PR_Pin_Tries <= 3):
+                
+                    Check_Username = input("Enter Your Username: ").strip()
+                    
+                    if (Check_Username == User_Name):
+                        
+                        try: 
+                            
+                            PR_Pin_Code = input("Enter Current 4-Digit Pin Associated With The Account: ") # PR = Password Reset
+                            PR_Pin_Code_Length = len(PR_Pin_Code)
+                            Int_PR_Pin_Code = int(PR_Pin_Code)
+                                                
+                            if (PR_Pin_Code_Length == 4):
+                                                    
+                                if (Int_PR_Pin_Code == Pin_Code):
+                                    
+                                    New_Password = input("Enter Your New Password: ").strip()
+                                    Password = New_Password
+                                    print("Password Successfully Changed.")
+                                    input("Press Enter To Continue...")
+                                    print()
+                                    break
+                                    
+                                else: 
+                                    
+                                    print("Invalid Current Pin.")
+                                    input("Press Enter To Continue..")
+                                    print()
+                                    PR_Pin_Tries += 1
+                            
+                            else:
+                                
+                                print("Please Enter A 4-Digit Pin Instead.")
+                                input("Press Enter To Continue..")
+                                print()
+                            
+                        
+                        except ValueError:
+                            
+                            print("Enter Numeric Values For The 4-Digit Pin.")
+                            input("Press Enter To Continue..")
+                            print()
+                            
+                    else:
+                        print("Invalid Username.")
+                        input("Press Enter To Continue..")
+                        print()   
+                        Reset_Password_Tries += 1 
+                
+                else:
+                    
+                    print("Password Reset Disabled, Please Try Again After '24 Hours' Or Call At 100540 For Assistance.")
+                    break
+            
+        
+        elif (Choice == 4):
+            break
+        
+        else:
+            
+            print("Invalid Choice, Please Retry Again.")
+            print()  
+            continue
+                          
+    except ValueError:
+        
+        print("Enter A Valid Option.")
+        
+print("Exited Successfully, We Would Like To Thank You For Using Our Services, Goodbye!")      
